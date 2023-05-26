@@ -23,7 +23,10 @@ function fetchCover(str) {
   return covers ? covers[0] : null;
 }
 function readMd(source){
-  return fs.readFileSync(source, 'utf8')
+  let data = fs.readFileSync(source, 'utf8')
+  let firstDashIndex = data.indexOf('---')
+  let secondDashIndex = data.indexOf('---', firstDashIndex + 1)
+  return data.substring(secondDashIndex + 3)
 }
 
 module.exports = function (hexo, site) {
@@ -245,7 +248,7 @@ module.exports = function (hexo, site) {
           covers: post.img || fetchCovers(post.content),
           keywords: cfg.keyword,
           content: readMd(post.full_source),
-          more: post.more,
+          // more: post.more,
           categories: post.categories.map(function (cat) {
             return {
               name: cat.name,
