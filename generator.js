@@ -217,20 +217,20 @@ module.exports = function (hexo, site) {
       });
     }
 
-    apiData.push({
-      path: 'api/posts.json',
-      data: page_posts[0].data
-    });
+    // apiData.push({
+    //   path: 'api/posts.json',
+    //   data: page_posts[0].data
+    // });
 
     apiData = apiData.concat(page_posts);
 
-  } else {
+  } 
 
-    apiData.push({
-      path: 'api/posts.json',
-      data: JSON.stringify(postlist)
-    });
-  }
+  apiData.push({
+    path: 'api/posts.json',
+    data: JSON.stringify(postlist)
+  });
+  
 
   if (restful.post) {
     apiData = apiData.concat(posts.map(function (post) {
